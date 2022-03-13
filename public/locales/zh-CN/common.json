@@ -41,7 +41,7 @@
   "Downloading {{progress}}%": "已下载 {{progress}}%",
   "Downloading folder, refresh page to cancel": "下载文件夹中，刷新页面以取消",
   "Downloading selected files, refresh page to cancel": "下载选定文件中，刷新页面以取消",
-  "Downloading selected files...": "下载选定文件中…",
+  "Downloading selected files...": "文件夹批量下载功能已被管理员取消，请移至网盘下载。",
   "Email": "电子邮件",
   "Enter Password": "输入密码",
   "Error storing the token": "存储 token 时出错",
