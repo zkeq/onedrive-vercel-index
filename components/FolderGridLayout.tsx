@@ -153,7 +153,6 @@ const FolderGridLayout = ({
           </div>
         ))}
       </div>
-    </div>
   )
 }
 
