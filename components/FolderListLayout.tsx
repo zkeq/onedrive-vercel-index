@@ -69,20 +69,6 @@ const FolderListLayout = ({
           {t('Actions')}
         </div>
         <div className="hidden text-xs font-bold uppercase tracking-widest text-gray-600 dark:text-gray-300 md:block">
-          <div className="hidden p-1.5 text-gray-700 dark:text-gray-400 md:flex">
-            {totalGenerating ? (
-              <Downloading title={t('Downloading selected files, refresh page to cancel')} style="p-1.5" />
-            ) : (
-              <button
-                title={t('Download selected files')}
-                className="cursor-pointer rounded p-1.5 hover:bg-gray-300 disabled:cursor-not-allowed disabled:text-gray-400 disabled:hover:bg-white dark:hover:bg-gray-600 disabled:dark:text-gray-600 disabled:hover:dark:bg-gray-900"
-                disabled={totalSelected === 0}
-                onClick={handleSelectedDownload}
-              >
-                <FontAwesomeIcon icon={['far', 'arrow-alt-circle-down']} size="lg" />
-              </button>
-            )}
-          </div>
         </div>
       </div>
 

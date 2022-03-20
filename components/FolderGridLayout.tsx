@@ -77,24 +77,6 @@ const FolderGridLayout = ({
   const getItemPath = (name: string) => `${path === '/' ? '' : path}/${encodeURIComponent(name)}`
 
   return (
-    <div className="rounded bg-white dark:bg-gray-900 dark:text-gray-100">
-      <div className="flex items-center border-b border-gray-900/10 px-3 text-xs font-bold uppercase tracking-widest text-gray-600 dark:border-gray-500/30 dark:text-gray-400">
-        <div className="flex-1">{t('{{count}} item(s)', { count: folderChildren.length })}</div>
-        <div className="flex p-1.5 text-gray-700 dark:text-gray-400">
-          {totalGenerating ? (
-            <Downloading title={t('Downloading selected files, refresh page to cancel')} style="p-1.5" />
-          ) : (
-            <button
-              title={t('Download selected files')}
-              className="cursor-pointer rounded p-1.5 hover:bg-gray-300 disabled:cursor-not-allowed disabled:text-gray-400 disabled:hover:bg-white dark:hover:bg-gray-600 disabled:dark:text-gray-600 disabled:hover:dark:bg-gray-900"
-              disabled={totalSelected === 0}
-              onClick={handleSelectedDownload}
-            >
-              <FontAwesomeIcon icon={['far', 'arrow-alt-circle-down']} size="lg" />
-            </button>
-          )}
-        </div>
-      </div>
 
       <div className="grid grid-cols-2 gap-3 p-3 md:grid-cols-4">
         {folderChildren.map((c: OdFolderChildren) => (
