@@ -10,7 +10,7 @@ import { getBaseUrl } from '../utils/getBaseUrl'
 import { humanFileSize, formatModifiedDateTime } from '../utils/fileDetails'
 import { getReadablePath } from '../utils/getReadablePath'
 
-import { Downloading, Checkbox, ChildIcon, ChildName } from './FileListing'
+import { Downloading, ChildIcon, ChildName } from './FileListing'
 import { getStoredToken } from '../utils/protectedRouteHandler'
 
 const FileListItem: FC<{ fileContent: OdFolderChildren }> = ({ fileContent: c }) => {
@@ -55,7 +55,7 @@ const FolderListLayout = ({
 
   return (
     <div className="rounded bg-white dark:bg-gray-900 dark:text-gray-100">
-      <div className="grid grid-cols-12 items-center space-x-2 border-b border-gray-900/10 px-3 dark:border-gray-500/30">
+      <div className="grid grid-cols-11 items-center space-x-2 border-b border-gray-900/10 px-3 dark:border-gray-500/30">
         <div className="col-span-12 py-2 text-xs font-bold uppercase tracking-widest text-gray-600 dark:text-gray-300 md:col-span-6">
           {t('Name')}
         </div>
@@ -68,33 +68,11 @@ const FolderListLayout = ({
         <div className="hidden text-xs font-bold uppercase tracking-widest text-gray-600 dark:text-gray-300 md:block">
           {t('Actions')}
         </div>
-        <div className="hidden text-xs font-bold uppercase tracking-widest text-gray-600 dark:text-gray-300 md:block">
-          <div className="hidden p-1.5 text-gray-700 dark:text-gray-400 md:flex">
-            <Checkbox
-              checked={totalSelected}
-              onChange={toggleTotalSelected}
-              indeterminate={true}
-              title={t('Select files')}
-            />
-            {totalGenerating ? (
-              <Downloading title={t('Downloading selected files, refresh page to cancel')} style="p-1.5" />
-            ) : (
-              <button
-                title={t('Download selected files')}
-                className="cursor-pointer rounded p-1.5 hover:bg-gray-300 disabled:cursor-not-allowed disabled:text-gray-400 disabled:hover:bg-white dark:hover:bg-gray-600 disabled:dark:text-gray-600 disabled:hover:dark:bg-gray-900"
-                disabled={totalSelected === 0}
-                onClick={handleSelectedDownload}
-              >
-                <FontAwesomeIcon icon={['far', 'arrow-alt-circle-down']} size="lg" />
-              </button>
-            )}
-          </div>
-        </div>
       </div>
 
       {folderChildren.map((c: OdFolderChildren) => (
         <div
-          className="grid grid-cols-12 transition-all duration-100 hover:bg-gray-100 dark:hover:bg-gray-850"
+          className="grid grid-cols-11 transition-all duration-100 hover:bg-gray-100 dark:hover:bg-gray-850"
           key={c.id}
         >
           <Link href={`${path === '/' ? '' : path}/${encodeURIComponent(c.name)}`} passHref>
@@ -157,15 +135,6 @@ const FolderListLayout = ({
               </a>
             </div>
           )}
-          <div className="hidden p-1.5 text-gray-700 dark:text-gray-400 md:flex">
-            {!c.folder && !(c.name === '.password') && (
-              <Checkbox
-                checked={selected[c.id] ? 2 : 0}
-                onChange={() => toggleItemSelected(c.id)}
-                title={t('Select file')}
-              />
-            )}
-          </div>
         </div>
       ))}
     </div>
