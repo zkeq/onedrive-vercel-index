@@ -55,11 +55,11 @@ const FolderListLayout = ({
 
   return (
     <div className="rounded bg-white dark:bg-gray-900 dark:text-gray-100">
-      <div className="grid grid-cols-12 items-center space-x-2 border-b border-gray-900/10 px-3 dark:border-gray-500/30">
+      <div className="grid grid-cols-11 items-center space-x-2 border-b border-gray-900/10 px-3 dark:border-gray-500/30">
         <div className="col-span-12 py-2 text-xs font-bold uppercase tracking-widest text-gray-600 dark:text-gray-300 md:col-span-6">
           {t('Name')}
         </div>
-        <div className="col-span-4 hidden text-xs font-bold uppercase tracking-widest text-gray-600 dark:text-gray-300 md:block">
+        <div className="col-span-3 hidden text-xs font-bold uppercase tracking-widest text-gray-600 dark:text-gray-300 md:block">
           {t('Last Modified')}
         </div>
         <div className="hidden text-xs font-bold uppercase tracking-widest text-gray-600 dark:text-gray-300 md:block">
