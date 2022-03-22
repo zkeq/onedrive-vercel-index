@@ -12,7 +12,6 @@ import { useClipboard } from 'use-clipboard-copy'
 
 import { getBaseUrl } from '../../utils/getBaseUrl'
 import { getExtension } from '../../utils/getFileIcon'
-import { getReadablePath } from '../../utils/getReadablePath'
 import { getStoredToken } from '../../utils/protectedRouteHandler'
 
 import { DownloadButton } from '../DownloadBtnGtoup'
@@ -133,19 +132,9 @@ const VideoPreview: FC<{ file: OdFileObject }> = ({ file }) => {
             btnText={t('Download')}
             btnIcon="file-download"
           />
-          {/* <DownloadButton
-            onClickCallback={() =>
-              window.open(`/api/proxy?url=${encodeURIComponent(...)}`)
-            }
-            btnColor="teal"
-            btnText={t('Proxy download')}
-            btnIcon="download"
-          /> */}
           <DownloadButton
             onClickCallback={() => {
-              clipboard.copy(
-                `${getBaseUrl()}/api/raw/?path=${getReadablePath(asPath)}${hashedToken ? `&odpt=${hashedToken}` : ''}`
-              )
+              clipboard.copy(`${getBaseUrl()}/api/raw/?path=${asPath}${hashedToken ? `&odpt=${hashedToken}` : ''}`)
               toast.success(t('Copied direct link to clipboard.'))
             }}
             btnColor="pink"

@@ -22,17 +22,27 @@ const TextPreview = ({ file }) => {
 
   if (validating) {
     return (
-      <PreviewContainer>
-        <Loading loadingText={t('Loading file content...')} />
-      </PreviewContainer>
+      <>
+        <PreviewContainer>
+          <Loading loadingText={t('Loading file content...')} />
+        </PreviewContainer>
+        <DownloadBtnContainer>
+          <DownloadButtonGroup />
+        </DownloadBtnContainer>
+      </>
     )
   }
 
   if (!content) {
     return (
-      <PreviewContainer>
-        <FourOhFour errorMsg={t('File is empty.')} />
-      </PreviewContainer>
+      <>
+        <PreviewContainer>
+          <FourOhFour errorMsg={t('File is empty.')} />
+        </PreviewContainer>
+        <DownloadBtnContainer>
+          <DownloadButtonGroup />
+        </DownloadBtnContainer>
+      </>
     )
   }
 
