@@ -9,7 +9,6 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 import { getBaseUrl } from '../utils/getBaseUrl'
-import { getReadablePath } from '../utils/getReadablePath'
 import { getStoredToken } from '../utils/protectedRouteHandler'
 import CustomEmbedLinkMenu from './CustomEmbedLinkMenu'
 
@@ -83,18 +82,9 @@ const DownloadButtonGroup = () => {
           btnIcon="file-download"
           btnTitle={t('Download the file directly through OneDrive')}
         />
-        {/* <DownloadButton
-          onClickCallback={() => window.open(`/api/proxy?url=${encodeURIComponent(downloadUrl)}`)}
-          btnColor="teal"
-          btnText={t('Proxy download')}
-          btnIcon="download"
-          btnTitle={t('Download the file with the stream proxied through Vercel Serverless')}
-        /> */}
         <DownloadButton
           onClickCallback={() => {
-            clipboard.copy(
-              `${getBaseUrl()}/api/raw/?path=${getReadablePath(asPath)}${hashedToken ? `&odpt=${hashedToken}` : ''}`
-            )
+            clipboard.copy(`${getBaseUrl()}/api/raw/?path=${asPath}${hashedToken ? `&odpt=${hashedToken}` : ''}`)
             toast.success(t('Copied direct link to clipboard.'))
           }}
           btnColor="pink"
