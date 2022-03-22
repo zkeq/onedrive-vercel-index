@@ -8,7 +8,7 @@ import { useTranslation } from 'next-i18next'
 
 import { getBaseUrl } from '../utils/getBaseUrl'
 import { formatModifiedDateTime } from '../utils/fileDetails'
-import { Checkbox, ChildIcon, ChildName, Downloading } from './FileListing'
+import { ChildIcon, ChildName, Downloading } from './FileListing'
 import { getStoredToken } from '../utils/protectedRouteHandler'
 
 const GridItem = ({ c, path }: { c: OdFolderChildren; path: string }) => {
@@ -80,12 +80,6 @@ const FolderGridLayout = ({
       <div className="flex items-center border-b border-gray-900/10 px-3 text-xs font-bold uppercase tracking-widest text-gray-600 dark:border-gray-500/30 dark:text-gray-400">
         <div className="flex-1">{t('{{count}} item(s)', { count: folderChildren.length })}</div>
         <div className="flex p-1.5 text-gray-700 dark:text-gray-400">
-          <Checkbox
-            checked={totalSelected}
-            onChange={toggleTotalSelected}
-            indeterminate={true}
-            title={t('Select all files')}
-          />
           {totalGenerating ? (
             <Downloading title={t('Downloading selected files, refresh page to cancel')} style="p-1.5" />
           ) : (
@@ -166,13 +160,6 @@ const FolderGridLayout = ({
                 selected[c.id] ? 'opacity-100' : 'opacity-0'
               } absolute top-0 left-0 z-10 m-1 rounded bg-white/50 py-0.5 group-hover:opacity-100 dark:bg-gray-900/50`}
             >
-              {!c.folder && !(c.name === '.password') && (
-                <Checkbox
-                  checked={selected[c.id] ? 2 : 0}
-                  onChange={() => toggleItemSelected(c.id)}
-                  title={t('Select file')}
-                />
-              )}
             </div>
 
             <Link href={getItemPath(c.name)} passHref>
