@@ -55,7 +55,7 @@ module.exports = {
     {
       "name": "Bilibili",
       "link": "https://space.bilibili.com/36184593",
-      "other": "Bilibili"
+      "other": "bilibili"
     },
     {
       "name": "搜索",
