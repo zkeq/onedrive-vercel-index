@@ -60,7 +60,7 @@ module.exports = {
     {
       "name": "搜索",
       "link": "https://www.mubucm.com/doc/71nrYh7YGLN",
-      "other": "searchengin"
+      "other": "sistrix"
     }
   ],
   datetimeFormat: 'YYYY-MM-DD HH:mm:ss'
