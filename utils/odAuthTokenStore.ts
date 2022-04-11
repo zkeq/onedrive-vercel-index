@@ -1,4 +1,5 @@
 import axios from 'axios'
+var request = require('request');
 
 const base_url = process.env.BASE_URL
 
@@ -26,8 +27,35 @@ export async function storeOdAuthTokens({
   accessTokenExpiry: number
   refreshToken: string
 }): Promise<void> {
-  var post_url = base_url + "/post_ak" + "?ak=" + accessToken + "&name=" + "access_token"
-  await axios.get(post_url)
-  var post_rk = base_url + "/post_ak" + "?ak=" + refreshToken + "&name=" + "refresh_token"
-  await axios.get(post_rk)
+  var options_at = {
+    'method': 'POST',
+    'url': base_url + '/post_ak',
+    'headers': {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    form: {
+      'ak': accessToken,
+      'name': 'access_token'
+    }
+  };
+  request(options_at, function (error, response) {
+    if (error) throw new Error(error);
+    console.log(response.body);
+  });
+
+  var options_at = {
+    'method': 'POST',
+    'url': base_url + '/post_ak',
+    'headers': {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    form: {
+      'ak': refreshToken,
+      'name': 'refresh_token'
+    }
+  };
+  request(options_at, function (error, response) {
+    if (error) throw new Error(error);
+    console.log(response.body);
+  });
 }
