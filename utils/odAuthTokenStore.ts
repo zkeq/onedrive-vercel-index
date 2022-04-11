@@ -1,5 +1,5 @@
-import axios from 'axios'
-var request = require('request');
+var axios = require('axios');
+var qs = require('qs');
 
 const base_url = process.env.BASE_URL
 
@@ -27,35 +27,46 @@ export async function storeOdAuthTokens({
   accessTokenExpiry: number
   refreshToken: string
 }): Promise<void> {
-  var options_at = {
-    'method': 'POST',
-    'url': base_url + '/post_ak',
-    'headers': {
+  // 提交 access_token
+  var access_token_data = qs.stringify({
+    'ak': accessToken,
+    'name': 'access_token' 
+  });
+  var _config = {
+    method: 'post',
+    url: base_url + '/post_ak',
+    headers: { 
       'Content-Type': 'application/x-www-form-urlencoded'
     },
-    form: {
-      'ak': accessToken,
-      'name': 'access_token'
-    }
+    data : access_token_data
   };
-  request(options_at, function (error, response) {
-    if (error) throw new Error(error);
-    console.log(response.body);
+  axios(_config)
+  .then(function (response) {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch(function (error) {
+    console.log(error);
   });
 
-  var options_at = {
-    'method': 'POST',
-    'url': base_url + '/post_ak',
-    'headers': {
+
+  // 提交 refreshToken
+  var refreshToken_data = qs.stringify({
+    'ak': refreshToken,
+    'name': 'refresh_token' 
+  });
+  var _config = {
+    method: 'post',
+    url: base_url + '/post_ak',
+    headers: { 
       'Content-Type': 'application/x-www-form-urlencoded'
     },
-    form: {
-      'ak': refreshToken,
-      'name': 'refresh_token'
-    }
+    data : refreshToken_data
   };
-  request(options_at, function (error, response) {
-    if (error) throw new Error(error);
-    console.log(response.body);
+  axios(_config)
+  .then(function (response) {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch(function (error) {
+    console.log(error);
   });
 }
