@@ -1,12 +1,15 @@
-import Redis from 'ioredis'
+import axios from 'axios'
+
+const base_url = process.env.BASE_URL
 
 // Persistent key-value store is provided by Redis, hosted on Upstash
 // https://vercel.com/integrations/upstash
-const kv = new Redis(process.env.REDIS_URL)
 
 export async function getOdAuthTokens(): Promise<{ accessToken: unknown; refreshToken: unknown }> {
-  const accessToken = await kv.get('access_token')
-  const refreshToken = await kv.get('refresh_token')
+  const accessToken = await (await axios.get( base_url +'/get')).data
+  console.log("===== get accessToken =====")
+  const refreshToken = await (await axios.get(base_url + '/fresh')).data
+  console.log("===== get refreshToken =====")
 
   return {
     accessToken,
@@ -23,6 +26,8 @@ export async function storeOdAuthTokens({
   accessTokenExpiry: number
   refreshToken: string
 }): Promise<void> {
-  await kv.set('access_token', accessToken, 'ex', accessTokenExpiry)
-  await kv.set('refresh_token', refreshToken)
+  var post_url = base_url + "/post_ak" + "?ak=" + accessToken + "&name=" + "access_token"
+  await axios.get(post_url)
+  var post_rk = base_url + "/post_ak" + "?ak=" + refreshToken + "&name=" + "refresh_token"
+  await axios.get(post_rk)
 }
