@@ -56,11 +56,6 @@ module.exports = {
       "name": "Bilibili",
       "link": "https://space.bilibili.com/36184593",
       "other": "youtube"
-    },
-    {
-      "name": "搜索",
-      "link": "https://www.mubucm.com/doc/71nrYh7YGLN",
-      "other": "sistrix"
     }
   ],
   datetimeFormat: 'YYYY-MM-DD HH:mm:ss'
