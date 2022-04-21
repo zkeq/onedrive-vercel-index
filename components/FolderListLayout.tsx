@@ -11,7 +11,6 @@ import { humanFileSize, formatModifiedDateTime } from '../utils/fileDetails'
 import { getReadablePath } from '../utils/getReadablePath'
 
 import { Downloading, ChildIcon, ChildName } from './FileListing'
-import { hideFileRegex } from '../config/api.config'
 import { getStoredToken } from '../utils/protectedRouteHandler'
 
 const FileListItem: FC<{ fileContent: OdFolderChildren }> = ({ fileContent: c }) => {
@@ -53,7 +52,6 @@ const FolderListLayout = ({
 
   // Get item path from item name
   const getItemPath = (name: string) => `${path === '/' ? '' : path}/${encodeURIComponent(name)}`
-  folderChildren = folderChildren.filter((c: OdFolderChildren) => c.name.match(new RegExp(hideFileRegex, 'i')) === null)
 
   return (
     <div className="rounded bg-white dark:bg-gray-900 dark:text-gray-100">

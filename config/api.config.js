@@ -16,9 +16,6 @@ module.exports = {
   // The redirectUri is the URL that the user will be redirected to after they have authenticated with Microsoft Graph API.
   // Likewise, you would not need to change redirectUri if you are using your personal Microsoft account with OneDrive International.
   redirectUri: 'http://localhost',
-  
-  // The hideFileRegex is used to hide some files, and supports regular expressions. e.g. README.md
-  hideFileRegex: 'README[.]md',
 
   // These are the URLs of the OneDrive API endpoints. You would not need to change anything here if you are using OneDrive International
   // or E5 Subscription OneDrive for Business. You may need to change these if you are using OneDrive 世纪互联.

@@ -10,7 +10,6 @@ import { getBaseUrl } from '../utils/getBaseUrl'
 import { formatModifiedDateTime } from '../utils/fileDetails'
 import { ChildIcon, ChildName, Downloading } from './FileListing'
 import { getStoredToken } from '../utils/protectedRouteHandler'
-import { hideFileRegex } from '../config/api.config'
 
 const GridItem = ({ c, path }: { c: OdFolderChildren; path: string }) => {
   // We use the generated medium thumbnail for rendering preview images (excluding folders)
@@ -75,7 +74,6 @@ const FolderGridLayout = ({
 
   // Get item path from item name
   const getItemPath = (name: string) => `${path === '/' ? '' : path}/${encodeURIComponent(name)}`
-  folderChildren = folderChildren.filter((c: OdFolderChildren) => c.name.match(new RegExp(hideFileRegex, 'i')) === null)
 
   return (
     <div className="rounded bg-white dark:bg-gray-900 dark:text-gray-100">
@@ -135,7 +133,8 @@ const FolderGridLayout = ({
                     className="cursor-pointer rounded px-1.5 py-1 hover:bg-gray-300 dark:hover:bg-gray-600"
                     onClick={() => {
                       clipboard.copy(
-                        `${getBaseUrl()}/api/raw/?path=${getItemPath(c.name)}${hashedToken ? `&odpt=${hashedToken}` : ''
+                        `${getBaseUrl()}/api/raw/?path=${getItemPath(c.name)}${
+                          hashedToken ? `&odpt=${hashedToken}` : ''
                         }`
                       )
                       toast.success(t('Copied raw file permalink.'))
@@ -146,7 +145,9 @@ const FolderGridLayout = ({
                   <a
                     title={t('Download file')}
                     className="cursor-pointer rounded px-1.5 py-1 hover:bg-gray-300 dark:hover:bg-gray-600"
-                    href={`${getBaseUrl()}/api/raw/?path=${getItemPath(c.name)}${hashedToken ? `&odpt=${hashedToken}` : ''             }`}
+                    href={`${getBaseUrl()}/api/raw/?path=${getItemPath(c.name)}${
+                      hashedToken ? `&odpt=${hashedToken}` : ''
+                    }`}
                   >
                     <FontAwesomeIcon icon={['far', 'arrow-alt-circle-down']} />
                   </a>
@@ -155,8 +156,10 @@ const FolderGridLayout = ({
             </div>
 
             <div
-              className={`${selected[c.id] ? 'opacity-100' : 'opacity-0'
-            } absolute top-0 left-0 z-10 m-1 rounded bg-white/50 py-0.5 group-hover:opacity-100 dark:bg-gray-900/50`}  >
+              className={`${
+                selected[c.id] ? 'opacity-100' : 'opacity-0'
+              } absolute top-0 left-0 z-10 m-1 rounded bg-white/50 py-0.5 group-hover:opacity-100 dark:bg-gray-900/50`}
+            >
             </div>
 
             <Link href={getItemPath(c.name)} passHref>
