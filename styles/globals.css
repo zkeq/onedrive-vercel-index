@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+.react-pdf__Page__canvas {
+  @apply mx-auto border border-gray-300/40 shadow;
+}
+
+.markdown-body ul {
+  @apply list-disc;
+}
+.markdown-body ol {
+  @apply list-decimal;
+}
+pre[class*='language-'],
+code[class*='language-'] {
+  @apply font-mono !important;
+}
+.p-4.text-xs.font-medium.text-gray-400.w-full.text-center.border-t.border-gray-900\/10.dark\:border-gray-500\/30 {
+  line-height: 1.3rem;
+}
