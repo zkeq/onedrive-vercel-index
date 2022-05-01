@@ -1,6 +1,12 @@
 {
     "version": 2,
     "routes": [
-        {"src": "/(.*)","dest": "https://api.tuostudy.com/$1"}
+        {
+            "src": "/(.*)",
+            "dest": "https://api.tuostudy.com/$1",
+            "headers": {
+                "Cache-Control": "max-age=0, s-maxage=60, stale-while-revalidate"
+            }
+        }
     ]
   }
