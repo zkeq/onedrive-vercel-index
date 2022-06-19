@@ -1,12 +1,12 @@
 {
-    "version": 2,
-    "routes": [
+    "rewrites": [
         {
-            "src": "/(.*)",
-            "dest": "https://api.tuostudy.com/$1",
-            "headers": {
-                "cache-control": "ms-maxage=1000"
-            }
+            "source": "/_next/image/",
+            "destination": "/favicon.ico"
+        },
+        {
+            "source": "/:path(.*)",
+            "destination": "https://api.tuostudy.com/:path*"
         }
     ]
-  }
+}
