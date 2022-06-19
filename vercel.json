@@ -1,36 +1,12 @@
 {
-    "rewrites": [
+    "version": 2,
+    "routes": [
         {
-            "source": "/api/:match*",
-            "destination": "https://api.tuostudy.com/api/:match*"
-        },
-        {
-            "source": "/api/raw/:match*",
-            "destination": "https://api.tuostudy.com/api/raw/:match*"
-        },
-        {
-            "source": "/:match*",
-            "destination": "https://api.tuostudy.com/:match*"
-        },
-        {
-            "source": "/api/",
-            "destination": "https://api.tuostudy.com/api/"
-        },
-        {
-            "source": "/api/raw/",
-            "destination": "https://api.tuostudy.com/api/raw/"
-        },
-        {
-            "source": "/api/search/",
-            "destination": "https://api.tuostudy.com/api/search/"
-        },
-        {
-            "source": "/api/item/",
-            "destination": "https://api.tuostudy.com/api/item/"
-        },
-        {
-            "source": "/_next/image/",
-            "destination": "/favicon.ico"
+            "src": "/(.*)",
+            "dest": "https://api.tuostudy.com/$1",
+            "headers": {
+                "cache-control": "ms-maxage=1000"
+            }
         }
     ]
-}
+  }
